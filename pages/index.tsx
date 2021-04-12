@@ -20,11 +20,8 @@ export default function Home() {
   useEffect(() => {
     const activeTasks = taskList.filter(task => task.isCompleted === false)
     setActiveTask(activeTasks.length)
-    console.log(activeTask)
     return
   }, [taskList]);
-
-  console.log(taskList)
 
 
   //add to-do
@@ -107,76 +104,37 @@ export default function Home() {
 
         <div>
           {taskList.map(task => {
-            switch(sortedBy) {
-              case 'all':
-                return (
-                  <div key={task.id}>
-                    {task.isCompleted ? (
-                      <input type="checkbox" name="completed" onChange={() => handleSetCompletedTask(task.id)} checked/>
-                    ) : (
-                      <input type="checkbox" name="completed" onChange={() => handleSetCompletedTask(task.id)} />
-                    )}
-                    <p>{task.task}</p>
-                    <button
-                      type="button"
-                      onClick={() => handleDeleteTask(task.id)}
-                    >
-                      <FiTrash />
-                    </button>
-                  </div>
-                )
-
-              case 'active':
-                if (task.isCompleted === false) {
-                  return (
-                    <div key={task.id}>
-                      {task.isCompleted ? (
-                        <input type="checkbox" name="completed" onChange={() => handleSetCompletedTask(task.id)} checked/>
-                      ) : (
-                        <input type="checkbox" name="completed" onChange={() => handleSetCompletedTask(task.id)} />
-                      )}
-                      <p>{task.task}</p>
-                      <button
-                        type="button"
-                        onClick={() => handleDeleteTask(task.id)}
-                      >
-                        <FiTrash />
-                      </button>
-                    </div>
-                  )
-                }
-                break
-
-              case 'completed':
-                if (task.isCompleted === true) {
-                  return (
-                    <div key={task.id}>
-                      {task.isCompleted ? (
-                        <input type="checkbox" name="completed" onChange={() => handleSetCompletedTask(task.id)} checked/>
-                      ) : (
-                        <input type="checkbox" name="completed" onChange={() => handleSetCompletedTask(task.id)} />
-                      )}
-                      <p>{task.task}</p>
-                      <button
-                        type="button"
-                        onClick={() => handleDeleteTask(task.id)}
-                      >
-                        <FiTrash />
-                      </button>
-                    </div>
-                  )
-                }
-                break
-            }
+            return (
+              <div 
+                key={task.id} 
+                style={
+                  (sortedBy === 'active' && task.isCompleted === false) || 
+                  (sortedBy === 'completed' && task.isCompleted === true) || 
+                  (sortedBy === 'all') 
+                  ? {display: "block"} 
+                  : {display: "none"} }
+              >
+                <input type="checkbox" name="completed" onChange={() => handleSetCompletedTask(task.id)} checked={task.isCompleted ? true : false}/>
+                <p>{task.task}</p>
+                <button
+                  type="button"
+                  onClick={() => handleDeleteTask(task.id)}
+                >
+                  <FiTrash />
+                </button>
+              </div>
+            )
           })}
         </div>
       
-        <div>
-          <p>{activeTask > 0 ? activeTask : "No"} tasks left</p>
-          <div style={{width: '100%', height: '12px', background: '#646464'}}>
-            <div style={{width: `${((taskList.length - activeTask) / taskList.length) * 100}%`, height: '8px', background: 'green'}}/>
+        {taskList.length !== 0 && (
+          <div>
+            <p>{activeTask > 0 ? activeTask : "No"} tasks left</p>
+            <div style={{width: '100%', height: '12px', background: '#646464'}}>
+              <div style={{width: `${((taskList.length - activeTask) / taskList.length) * 100}%`, height: '8px', background: 'green'}}/>
+            </div>
           </div>
-        </div>
+        )}
       </main>
 
       <footer>
