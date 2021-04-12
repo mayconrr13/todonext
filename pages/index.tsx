@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { FormEvent, useEffect, useState } from 'react'
 import {v4 as uuidv4} from 'uuid'
 
-import { FiGithub, FiLinkedin, FiPlus, FiTrash } from 'react-icons/fi'
+import { FiEdit3, FiGithub, FiLinkedin, FiPlus, FiSave, FiTrash, FiX } from 'react-icons/fi'
 
 interface TaskProps {
   id: string;
@@ -14,7 +14,9 @@ interface TaskProps {
 export default function Home() {
   const [task, setTask] = useState<string>('')
   const [activeTask, setActiveTask] = useState<number>(0)
+  const [idTaskToEdit, setIdTaskToEdit] = useState<string>('')
   const [sortedBy, setSortedBy] = useState<'all' | 'active' | 'completed'>('all')
+  const [onEditionProcess, setOneEditionProcess] = useState<boolean>(false)
   const [taskList, setTaskList] = useState<TaskProps[]>([])
 
   useEffect(() => {
@@ -54,8 +56,35 @@ export default function Home() {
   }
 
   //edit to-do
-  function handleEditTask() {
-    console.log('task edited')
+  function handleStartEditionProcess(id: string) {
+    setIdTaskToEdit(id)
+
+    const selectedTask = taskList.filter(task => task.id === id)
+    setTask(selectedTask[0].task)
+
+    setOneEditionProcess(true)
+  }
+
+  function handleEditTask(id: string, event: FormEvent) {
+    event.preventDefault()
+
+    const updatedTaskList = taskList.map(taskItem => {
+      if (taskItem.id === id) {
+        taskItem.task = task
+        return taskItem
+      }
+      return taskItem
+    })
+
+    console.log([...updatedTaskList])
+
+    handleFinishigEditionProcess()
+  }
+
+  function handleFinishigEditionProcess() {
+    setTask('')
+    setIdTaskToEdit('')
+    setOneEditionProcess(false)
   }
 
   //set completed to-do
@@ -77,12 +106,27 @@ export default function Home() {
         <div />
         <section>
           <h1>TO-DO-NEXT</h1>
-          <form onSubmit={handleAddTask}>
-            <input type="text" placeholder="Type you task here" value={task} onChange={(e) => setTask(e.target.value)} />
-            <button type="submit">
-              <FiPlus />
-            </button>
-          </form>
+
+          {onEditionProcess ? (
+            <form onSubmit={handleAddTask}>
+              <input type="text" placeholder="Type you task here" value={task} onChange={(e) => setTask(e.target.value)} />
+              <button type="submit" onClick={(e) => handleEditTask(idTaskToEdit, e)}>
+                <FiSave />
+              </button>
+              <button type="button" onClick={handleFinishigEditionProcess}>
+                <FiX />
+              </button>
+              
+            </form>
+          ) : (
+            <form onSubmit={handleAddTask}>
+              <input type="text" placeholder="Type you task here" value={task} onChange={(e) => setTask(e.target.value)} />
+              <button type="submit">
+                <FiPlus />
+              </button>
+            </form>
+          )}
+
         </section>
       </header>
 
@@ -114,11 +158,25 @@ export default function Home() {
                   ? {display: "block"} 
                   : {display: "none"} }
               >
-                <input type="checkbox" name="completed" onChange={() => handleSetCompletedTask(task.id)} checked={task.isCompleted ? true : false}/>
+                <input 
+                  type="checkbox" 
+                  name="completed" 
+                  onChange={() => handleSetCompletedTask(task.id)} 
+                  checked={task.isCompleted ? true : false} 
+                  disabled={onEditionProcess ? true : false} 
+                />
                 <p>{task.task}</p>
                 <button
                   type="button"
+                  onClick={() => handleStartEditionProcess(task.id)}
+                  disabled={onEditionProcess ? true : false}
+                >
+                  <FiEdit3 />
+                </button>
+                <button
+                  type="button"
                   onClick={() => handleDeleteTask(task.id)}
+                  disabled={onEditionProcess ? true : false}
                 >
                   <FiTrash />
                 </button>
