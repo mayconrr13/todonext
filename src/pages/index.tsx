@@ -5,7 +5,7 @@ import Cookies from 'js-cookie'
 
 import { FiEdit3, FiGithub, FiLinkedin, FiPlus, FiSave, FiTrash, FiX } from 'react-icons/fi'
 
-import { Container, Header, Form, Content, SortMenu, TasksContainer, Task } from '../styles/home'
+import { Container, Header, Form, Content, SortMenu, TasksContainer, Task, Status, Footer } from '../styles/home'
 
 interface TaskProps {
   id: string;
@@ -116,6 +116,7 @@ export default function Home() {
   return (
     <Container>
       <Header>
+        <div/>
         <section>
           <h1>TO-DO-NEXT</h1>
 
@@ -144,21 +145,25 @@ export default function Home() {
 
       <Content>
         <SortMenu>
-          <button type="button" onClick={() => setSortedBy('all')}>
-            All
-          </button>
-          <button type="button" onClick={() => setSortedBy('active')}>
-            Active
-          </button>
-          <button type="button" onClick={() => setSortedBy('completed')}>
-            Completed
-          </button>
+          <div>
+            <button type="button" onClick={() => setSortedBy('all')}>
+              All
+            </button>
+            <button type="button" onClick={() => setSortedBy('active')}>
+              Active
+            </button>
+            <button type="button" onClick={() => setSortedBy('completed')}>
+              Completed
+            </button>
+          </div>
           <button type="button" onClick={handleDeleteCompletedTask}>
             Delete all completed tasks
           </button>
         </SortMenu>
-
+        
         <TasksContainer>
+          {taskList.length === 0 && <p>Task list is empty...</p>}
+        
           {taskList.map(task => {
             return (
               <Task 
@@ -204,17 +209,18 @@ export default function Home() {
         </TasksContainer>
       
         {taskList.length !== 0 && (
-          <div>
+          <Status>
             <p>{activeTask > 0 ? activeTask : "No"} tasks left</p>
-            <div style={{width: '100%', height: '12px', background: '#646464'}}>
-              <div style={{width: `${((taskList.length - activeTask) / taskList.length) * 100}%`, height: '8px', background: 'green'}}/>
+
+            <div>
+              <div style={{width: `${((taskList.length - activeTask) / taskList.length) * 100}%`}} />
             </div>
-          </div>
+          </Status>
         )}
       </Content>
 
-      <footer>
-        Developed by Maycon
+      <Footer>
+        <p>Developed by <strong>Maycon</strong></p>
         <div>
           <Link href="https://github.com/mayconrr13">
             <a>
@@ -227,7 +233,7 @@ export default function Home() {
             </a>
           </Link>
         </div>
-      </footer>
+      </Footer>
     </Container>
   )
 }

@@ -2,12 +2,32 @@ import styled from 'styled-components'
 
 export const Container = styled.div`
   width: 100vw;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  padding: 0 1rem;
 `;
 
 export const Header = styled.header`
   width: 100%;
   height: 350px;
   background: linear-gradient(180deg, var(--green) 0%, var(--background) 100%);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  > div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100vw;
+    height: 350px;
+    background: linear-gradient(180deg, var(--green) 0%, var(--background) 100%);
+  }
 
   h1 {
     font-size: 3rem;
@@ -19,6 +39,10 @@ export const Header = styled.header`
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    max-width: 775px;
+    width: 100%;
+    margin: 0 1rem;
   }
 `;
 
@@ -26,7 +50,7 @@ export const Form = styled.form`
   display: flex;
   align-items: center;
 
-  max-width: 775px;
+  
   width: 100%;
   height: 3.5rem;
 
@@ -83,7 +107,7 @@ export const Content = styled.main`
   max-width: 775px;
   width: 100%;
   
-  margin: -5rem auto 0 auto;
+  margin: -5rem 1rem 0 1rem;
   padding: 1rem;
 
   background: var(--gray-700);
@@ -94,33 +118,54 @@ export const SortMenu = styled.div`
   width: 100%;
 
   display: flex;
+  justify-content: space-between;
   align-items: center;
 
   margin: 0.5rem 0;
 
-  button {
+  div {
+    button {
+      border: none;
+      color: var(--text);
+      background: transparent;
+
+      & + button {
+        margin-left: 2rem;
+      }
+    }
+  }
+
+  > button {
     border: none;
     color: var(--text);
     background: transparent;
+  }
 
-    & + button {
-      margin-left: 2rem;
-    }
+  @media (max-width: 550px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
-    &:last-child {
-      margin-left: auto;
+    > button {
+      margin-top: 1.5rem;
     }
   }
 `;
+
+export const EmptyMessage = styled.p``;
+
 
 export const TasksContainer = styled.div`
   width: 100%;
 
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: center;  
 
-  
+  > p {
+    margin: 1.5rem 0; 
+    color: var(--gray-300);
+  }
 `;
 
 export const Task = styled.div`
@@ -164,6 +209,74 @@ export const Task = styled.div`
     &.delete {
       color: var(--red);
       margin-right: 1.5rem;
+    }
+  }
+`;
+
+export const Status = styled.div`
+  display: flex;
+  align-items: center;
+
+  margin: 1.5rem 0 0.5rem 0;
+
+  p {
+    max-width: 110px;
+    width: 100%;
+    margin-right: 1rem;
+
+    text-align: left;
+  }
+
+  > div {
+    flex: 1;
+    height: 0.75rem;
+    border-radius: 0.375rem;
+    padding: 0.125rem;
+    background: var(--gray-300);
+
+    div {
+      height: 100%;
+      width: 100%;
+      border-radius: 0.25rem;
+      background: var(--green);
+    }
+  }
+`;
+
+export const Footer = styled.footer`
+  max-width: 775px;
+  width: 100%;
+  
+  margin: 3rem auto 0 auto;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  p {
+    margin-bottom: 1.5rem;
+  }
+
+  div {
+      display: flex;
+      align-items: center;
+
+    a {
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+      background: var(--green);
+
+      text-decoration: none;
+      color: var(--text);
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      & + a {
+        margin-left: 1.5rem;
+      }
     }
   }
 `;
