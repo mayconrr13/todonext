@@ -1,8 +1,11 @@
 import Link from 'next/link'
 import { FormEvent, useEffect, useState } from 'react'
 import {v4 as uuidv4} from 'uuid'
+import Cookies from 'js-cookie'
 
 import { FiEdit3, FiGithub, FiLinkedin, FiPlus, FiSave, FiTrash, FiX } from 'react-icons/fi'
+
+import { Container, Header, Form, Content, SortMenu, TasksContainer, Task } from '../styles/home'
 
 interface TaskProps {
   id: string;
@@ -11,20 +14,30 @@ interface TaskProps {
   createdAt: number;
   updatedAt: number;
 }
+
 export default function Home() {
   const [task, setTask] = useState<string>('')
   const [activeTask, setActiveTask] = useState<number>(0)
   const [idTaskToEdit, setIdTaskToEdit] = useState<string>('')
   const [sortedBy, setSortedBy] = useState<'all' | 'active' | 'completed'>('all')
   const [onEditionProcess, setOneEditionProcess] = useState<boolean>(false)
-  const [taskList, setTaskList] = useState<TaskProps[]>([])
+  const [taskList, setTaskList] = useState<TaskProps[]>(() => {
+    const storagedList = Cookies.get('taskList');
+
+    if (storagedList) {
+      return JSON.parse(storagedList);
+    }
+
+    return [];
+  })
 
   useEffect(() => {
+    Cookies.set('taskList', taskList)
+    
     const activeTasks = taskList.filter(task => task.isCompleted === false)
     setActiveTask(activeTasks.length)
     return
   }, [taskList]);
-
 
   //add to-do
   function handleAddTask(event: FormEvent) {
@@ -76,7 +89,7 @@ export default function Home() {
       return taskItem
     })
 
-    console.log([...updatedTaskList])
+    setTaskList([...updatedTaskList])
 
     handleFinishigEditionProcess()
   }
@@ -101,37 +114,36 @@ export default function Home() {
   }
 
   return (
-    <>
-      <header>
-        <div />
+    <Container>
+      <Header>
         <section>
           <h1>TO-DO-NEXT</h1>
 
           {onEditionProcess ? (
-            <form onSubmit={handleAddTask}>
+            <Form onSubmit={handleAddTask}>
               <input type="text" placeholder="Type you task here" value={task} onChange={(e) => setTask(e.target.value)} />
-              <button type="submit" onClick={(e) => handleEditTask(idTaskToEdit, e)}>
+              <button type="submit" onClick={(e) => handleEditTask(idTaskToEdit, e)} className="edit">
                 <FiSave />
               </button>
-              <button type="button" onClick={handleFinishigEditionProcess}>
+              <button type="button" onClick={handleFinishigEditionProcess} className="cancel">
                 <FiX />
               </button>
               
-            </form>
+            </Form>
           ) : (
-            <form onSubmit={handleAddTask}>
+            <Form onSubmit={handleAddTask}>
               <input type="text" placeholder="Type you task here" value={task} onChange={(e) => setTask(e.target.value)} />
-              <button type="submit">
+              <button type="submit" className="add">
                 <FiPlus />
               </button>
-            </form>
+            </Form>
           )}
 
         </section>
-      </header>
+      </Header>
 
-      <main>
-        <div>
+      <Content>
+        <SortMenu>
           <button type="button" onClick={() => setSortedBy('all')}>
             All
           </button>
@@ -144,30 +156,35 @@ export default function Home() {
           <button type="button" onClick={handleDeleteCompletedTask}>
             Delete all completed tasks
           </button>
-        </div>
+        </SortMenu>
 
-        <div>
+        <TasksContainer>
           {taskList.map(task => {
             return (
-              <div 
+              <Task 
                 key={task.id} 
                 style={
                   (sortedBy === 'active' && task.isCompleted === false) || 
                   (sortedBy === 'completed' && task.isCompleted === true) || 
                   (sortedBy === 'all') 
-                  ? {display: "block"} 
+                  ? {display: "inherit"} 
                   : {display: "none"} }
               >
-                <input 
-                  type="checkbox" 
-                  name="completed" 
-                  onChange={() => handleSetCompletedTask(task.id)} 
-                  checked={task.isCompleted ? true : false} 
-                  disabled={onEditionProcess ? true : false} 
-                />
-                <p>{task.task}</p>
+                <label>
+                  <input 
+                    type="checkbox" 
+                    id="checkbox"
+                    name="checkbox" 
+                    onChange={() => handleSetCompletedTask(task.id)} 
+                    checked={task.isCompleted ? true : false} 
+                    disabled={onEditionProcess ? true : false} 
+                  />
+                  <span />
+                </label>
+                <p className={task.isCompleted ? "checked" : ""}  >{task.task}</p>
                 <button
                   type="button"
+                  className="edit"
                   onClick={() => handleStartEditionProcess(task.id)}
                   disabled={onEditionProcess ? true : false}
                 >
@@ -175,15 +192,16 @@ export default function Home() {
                 </button>
                 <button
                   type="button"
+                  className="delete"
                   onClick={() => handleDeleteTask(task.id)}
                   disabled={onEditionProcess ? true : false}
                 >
                   <FiTrash />
                 </button>
-              </div>
+              </Task>
             )
           })}
-        </div>
+        </TasksContainer>
       
         {taskList.length !== 0 && (
           <div>
@@ -193,7 +211,7 @@ export default function Home() {
             </div>
           </div>
         )}
-      </main>
+      </Content>
 
       <footer>
         Developed by Maycon
@@ -210,6 +228,6 @@ export default function Home() {
           </Link>
         </div>
       </footer>
-    </>
+    </Container>
   )
 }
