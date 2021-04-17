@@ -1,28 +1,60 @@
-# TypeScript & Styled Components Next.js example
+<h1 align="center">TO DO NEXT</h1>
 
-This is a really simple project that show the usage of Next.js with TypeScript and Styled Components.
+<h4 align="center"> 
+	Projeto concluído! 
+</h4>
+<p align="ledt">TO DO NEXT é uma aplicação que permite o usuário criar, editar e deletar tarefas. Esta aplicação foi criada com o intuito de ampliar as funcionadlidades do projeto desenvolvido no primeiro desafio do Ignite, bootcamp da Rocketseat, consolidandado conhecimentos sobre os conceitos de Estado e Imutabilidade relativos ao uso do ReactJS. Dessa forma, foi realizado um redesign da aplicação além de ser adicionada a resposividade do projeto.</p>
 
-## Deploy your own
+### Tecnologias utilizadas
+---
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
+* NextJS
+* Styled Components
+* Local Storage
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-typescript-styled-components&project-name=with-typescript-styled-components&repository-name=with-typescript-styled-components)
+### Features
+---
 
-## How to use it?
+- [x] Criação de tarefa
+- [x] Edição de tarefa
+- [x] Remoção de tarefa
+- [x] Ordenar tarefas concluidas e ativas
+- [x] Remoção geral de todas as tarefas concluidas
+- [x] Barra de progresso sobre a quantidade de tarefas não concluidas
+- [x] Tarefas salvas no localStorage
+- [ ] Login com github
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
+### Screenshots
+---
+
+* Mobile
+
+
+* Web
+
+### Como instalar
+---
 
 ```bash
-npx create-next-app --example with-typescript-styled-components with-typescript-styled-components-app
-# or
-yarn create next-app --example with-typescript-styled-components with-typescript-styled-components-app
+# Clone este repositório
+$ git clone https://github.com/mayconrr13/todonext.git
+
+# Instale as dependências
+$ yarn 
+
+# Execute a aplicação
+$ yarn dev
+
+# Acesse a aplicação
+$ http://localhost:3000
 ```
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+### Autor
+---
 
-## Notes
+<sub><b>Thiago Marinho</b></sub>
 
-This is an amalgamation of the 2 existing examples:
+Entre em contato!
 
-- [with-typescript](https://github.com/vercel/next.js/tree/canary/examples/with-typescript)
-- [with-styled-components](https://github.com/vercel/next.js/tree/canary/examples/with-styled-components)
+[![Linkedin Badge](https://img.shields.io/badge/-Maycon-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/mayconreisrosario/)](https://www.linkedin.com/in/mayconreisrosario/) 
+[![Gmail Badge](https://img.shields.io/badge/-mayconrr13@gmail.com-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:mayconrr13@gmail.com)](mailto:mayconrr13@gmail.com)
