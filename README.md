@@ -28,7 +28,7 @@
 ---
 
 * Mobile
-<img alt="mobile" title="To-Do-Next-mobile" src="./public/mobile.png" />
+<img alt="mobile" title="To-Do-Next-mobile" src="./public/mobile.png"/>
 
 * Web
 <img alt="Banner" title="To-Do-Next-web" src="./public/web.png" />
@@ -53,9 +53,9 @@ $ http://localhost:3000
 ### Autor
 ---
 
-<sub><b>Thiago Marinho</b></sub>
+Maycon dos Reis Rosário
 
-Entre em contato!
+### Entre em contato!
 
 [![Linkedin Badge](https://img.shields.io/badge/-Maycon-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/mayconreisrosario/)](https://www.linkedin.com/in/mayconreisrosario/) 
 [![Gmail Badge](https://img.shields.io/badge/-mayconrr13@gmail.com-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:mayconrr13@gmail.com)](mailto:mayconrr13@gmail.com)
