@@ -26,9 +26,9 @@ export const Header = styled.header`
     width: 100vw;
     height: 350px;
     background-image: url('/background.png');
-    object-fit: fill;
+    background-position: center;
     background-repeat: no-repeat;
-    background-size: 100% 100%;
+    background-size: cover;
   }
 
   h1 {

@@ -1,4 +1,4 @@
-<h1 align="center">TO DO NEXT</h1>
+<img alt="Banner" title="To-Do-Next" src="./public/banner.png" />
 
 <h4 align="center"> 
 	Projeto concluído! 
@@ -9,6 +9,7 @@
 ---
 
 * NextJS
+* TypeScript
 * Styled Components
 * Local Storage
 
@@ -22,15 +23,15 @@
 - [x] Remoção geral de todas as tarefas concluidas
 - [x] Barra de progresso sobre a quantidade de tarefas não concluidas
 - [x] Tarefas salvas no localStorage
-- [ ] Login com github
 
 ### Screenshots
 ---
 
 * Mobile
-
+<img alt="mobile" title="To-Do-Next-mobile" src="./public/mobile.png" />
 
 * Web
+<img alt="Banner" title="To-Do-Next-web" src="./public/web.png" />
 
 ### Como instalar
 ---
