@@ -6,6 +6,7 @@ import Cookies from 'js-cookie'
 import { FiEdit3, FiGithub, FiLinkedin, FiPlus, FiSave, FiTrash, FiX } from 'react-icons/fi'
 
 import { Container, Header, Form, Content, SortMenu, TasksContainer, Task, Status, Footer } from '../styles/home'
+import { GetServerSideProps } from 'next'
 
 interface TaskProps {
   id: string;
@@ -17,10 +18,11 @@ interface TaskProps {
 
 export default function Home() {
   const [task, setTask] = useState<string>('')
+  const [error, setError] = useState<string>('')
   const [activeTask, setActiveTask] = useState<number>(0)
   const [idTaskToEdit, setIdTaskToEdit] = useState<string>('')
   const [sortedBy, setSortedBy] = useState<'all' | 'active' | 'completed'>('all')
-  const [onEditionProcess, setOneEditionProcess] = useState<boolean>(false)
+  const [onEditionProcess, setOnEditionProcess] = useState<boolean>(false)
   const [taskList, setTaskList] = useState<TaskProps[]>(() => {
     const storagedList = Cookies.get('taskList');
 
@@ -32,6 +34,8 @@ export default function Home() {
   })
 
   useEffect(() => {
+    setActiveTask(0)
+
     Cookies.set('taskList', taskList)
     
     const activeTasks = taskList.filter(task => task.isCompleted === false)
@@ -42,6 +46,12 @@ export default function Home() {
   //add to-do
   function handleAddTask(event: FormEvent) {
     event.preventDefault()
+    setError('')
+
+    if (!task) {
+      setError('You need to insert a task')
+      return
+    }
 
     setTaskList([...taskList, {
       id: uuidv4(),
@@ -70,20 +80,28 @@ export default function Home() {
 
   //edit to-do
   function handleStartEditionProcess(id: string) {
+    setError('')
     setIdTaskToEdit(id)
 
     const selectedTask = taskList.filter(task => task.id === id)
     setTask(selectedTask[0].task)
 
-    setOneEditionProcess(true)
+    setOnEditionProcess(true)
   }
 
   function handleEditTask(id: string, event: FormEvent) {
     event.preventDefault()
+    setError('')
+
+    if (!task) {
+      setError('You need to insert a task')
+      return
+    }
 
     const updatedTaskList = taskList.map(taskItem => {
       if (taskItem.id === id) {
         taskItem.task = task
+        taskItem.updatedAt = Date.now()
         return taskItem
       }
       return taskItem
@@ -97,7 +115,7 @@ export default function Home() {
   function handleFinishigEditionProcess() {
     setTask('')
     setIdTaskToEdit('')
-    setOneEditionProcess(false)
+    setOnEditionProcess(false)
   }
 
   //set completed to-do
@@ -139,6 +157,8 @@ export default function Home() {
               </button>
             </Form>
           )}
+
+          {error && <p>{error}</p>}
 
         </section>
       </Header>

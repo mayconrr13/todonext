@@ -13,7 +13,8 @@ export const Container = styled.div`
 export const Header = styled.header`
   width: 100%;
   height: 350px;
-  background: linear-gradient(180deg, var(--green) 0%, var(--background) 100%);
+  /* background: linear-gradient(180deg, var(--green) 0%, var(--background) 100%); */
+  
 
   display: flex;
   flex-direction: column;
@@ -26,7 +27,10 @@ export const Header = styled.header`
     z-index: -1;
     width: 100vw;
     height: 350px;
-    background: linear-gradient(180deg, var(--green) 0%, var(--background) 100%);
+    background-image: url('/background.png');
+    object-fit: fill;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
   }
 
   h1 {
@@ -49,7 +53,6 @@ export const Header = styled.header`
 export const Form = styled.form`
   display: flex;
   align-items: center;
-
   
   width: 100%;
   height: 3.5rem;
@@ -66,6 +69,7 @@ export const Form = styled.form`
     border: none;
     background-color: transparent;
     margin-right: 1rem;
+    outline: none;
 
     color: var(--text);
 
@@ -170,6 +174,7 @@ export const TasksContainer = styled.div`
 
 export const Task = styled.div`
   width: 100%;
+  transition: display 5s;
 
   display: flex;
   flex-direction: row;

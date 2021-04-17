@@ -18,16 +18,17 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
     font-size: 1rem;
+    transition: all 0.5s;
   }
 
-  /* html {
-    @media (max-width: 1080px) {
+  html {
+    /* @media (max-width: 1080px) {
       font-size: 93.75%;
-    }
+    } */
     @media (max-width: 720px) {
       font-size: 87.5%;
       }
-  } */
+  }
 
   body {
     background: var(--background);
