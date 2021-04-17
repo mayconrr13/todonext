@@ -6,7 +6,6 @@ import Cookies from 'js-cookie'
 import { FiEdit3, FiGithub, FiLinkedin, FiPlus, FiSave, FiTrash, FiX } from 'react-icons/fi'
 
 import { Container, Header, Form, Content, SortMenu, TasksContainer, Task, Status, Footer } from '../styles/home'
-import { GetServerSideProps } from 'next'
 
 interface TaskProps {
   id: string;
@@ -166,13 +165,13 @@ export default function Home() {
       <Content>
         <SortMenu>
           <div>
-            <button type="button" onClick={() => setSortedBy('all')}>
+            <button className={ sortedBy === 'all' ? 'selected' : ''} type="button" onClick={() => setSortedBy('all')}>
               All
             </button>
-            <button type="button" onClick={() => setSortedBy('active')}>
+            <button className={ sortedBy === 'active' ? 'selected' : ''} type="button" onClick={() => setSortedBy('active')}>
               Active
             </button>
-            <button type="button" onClick={() => setSortedBy('completed')}>
+            <button className={ sortedBy === 'completed' ? 'selected' : ''} type="button" onClick={() => setSortedBy('completed')}>
               Completed
             </button>
           </div>

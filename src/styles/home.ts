@@ -12,9 +12,7 @@ export const Container = styled.div`
 
 export const Header = styled.header`
   width: 100%;
-  height: 350px;
-  /* background: linear-gradient(180deg, var(--green) 0%, var(--background) 100%); */
-  
+  height: 350px;  
 
   display: flex;
   flex-direction: column;
@@ -92,7 +90,7 @@ export const Form = styled.form`
     }
 
     &.add {
-      background: var(--green);
+      background: var(--blue);
     }
 
     &.edit {
@@ -132,6 +130,11 @@ export const SortMenu = styled.div`
       border: none;
       color: var(--text);
       background: transparent;
+      outline: none;
+
+      &.selected {
+        font-weight: bold;
+      }
 
       & + button {
         margin-left: 2rem;
@@ -243,7 +246,7 @@ export const Status = styled.div`
       height: 100%;
       width: 100%;
       border-radius: 0.25rem;
-      background: var(--green);
+      background: var(--blue);
     }
   }
 `;
@@ -270,7 +273,7 @@ export const Footer = styled.footer`
       width: 2rem;
       height: 2rem;
       border-radius: 50%;
-      background: var(--green);
+      background: var(--blue);
 
       text-decoration: none;
       color: var(--text);

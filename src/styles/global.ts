@@ -2,7 +2,7 @@ import { createGlobalStyle } from 'styled-components'
 
 const GlobalStyle = createGlobalStyle`
   :root {
-    --green: #6D9C62;
+    --blue: #4472CA;
     --red: #E54B4B;
     --yellow: #E5CC4B;
 
@@ -22,9 +22,6 @@ const GlobalStyle = createGlobalStyle`
   }
 
   html {
-    /* @media (max-width: 1080px) {
-      font-size: 93.75%;
-    } */
     @media (max-width: 720px) {
       font-size: 87.5%;
       }
