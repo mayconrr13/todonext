@@ -3,7 +3,7 @@
 <h4 align="center"> 
 	Projeto concluído! 
 </h4>
-<p align="ledt">TO DO NEXT é uma aplicação que permite o usuário criar, editar e deletar tarefas. Esta aplicação foi criada com o intuito de ampliar as funcionadlidades do projeto desenvolvido no primeiro desafio do Ignite, bootcamp da Rocketseat, consolidandado conhecimentos sobre os conceitos de Estado e Imutabilidade relativos ao uso do ReactJS. Dessa forma, foi realizado um redesign da aplicação além de ser adicionada a resposividade do projeto.</p>
+<p align="left">TO DO NEXT é uma aplicação que permite o usuário criar, editar e deletar tarefas. Esta aplicação foi criada com o intuito de ampliar as funcionadlidades do projeto desenvolvido no primeiro desafio do Ignite, bootcamp da Rocketseat, consolidandado conhecimentos sobre os conceitos de Estado e Imutabilidade relativos ao uso do ReactJS. Dessa forma, foi realizado um redesign da aplicação além de ser adicionada a resposividade do projeto.</p>
 
 ### Tecnologias utilizadas
 ---
@@ -27,11 +27,12 @@
 ### Screenshots
 ---
 
-* Mobile
-<img alt="mobile" title="To-Do-Next-mobile" src="./public/mobile.png"/>
+###### Mobile
+![](/public/todomobile.gif)
 
-* Web
-<img alt="Banner" title="To-Do-Next-web" src="./public/web.png" />
+
+###### Web
+![](/public/todoweb.gif)
 
 ### Como instalar
 ---
@@ -53,9 +54,9 @@ $ http://localhost:3000
 ### Autor
 ---
 
-Maycon dos Reis Rosário
+<p>Projeto criado por Maycon dos Reis Rosário</p>
+<p>Portifólio Digital: <a href="http://mayconrr.vercel.app">Acessar</a></p>
 
 ### Entre em contato!
 
-[![Linkedin Badge](https://img.shields.io/badge/-Maycon-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/mayconreisrosario/)](https://www.linkedin.com/in/mayconreisrosario/) 
-[![Gmail Badge](https://img.shields.io/badge/-mayconrr13@gmail.com-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:mayconrr13@gmail.com)](mailto:mayconrr13@gmail.com)
+[<img src="https://img.shields.io/badge/linkedin-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white" />](https://www.linkedin.com/in/mayconreisrosario/) [<img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white" />](mailto:mayconrr13@gmail.com)
